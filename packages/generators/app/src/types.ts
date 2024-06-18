@@ -18,6 +18,7 @@ export interface Scope {
   tmpPath: string;
   packageJsonStrapi: Record<string, unknown>;
   useTypescript: boolean;
+  useExampleApp: boolean;
 }
 
 export interface Options {
@@ -32,6 +33,7 @@ export interface Options {
   isQuickstart?: boolean;
 
   useTypescript: boolean;
+  useExampleApp: boolean;
 
   database: {
     client: ClientName;

@@ -22,6 +22,8 @@ const resources = join(__dirname, 'resources');
 export default async function createProject(scope: Scope) {
   console.log(`Creating a new Strapi application at ${chalk.green(scope.rootPath)}.\n`);
 
+  console.log(scope);
+
   const { rootPath, useTypescript } = scope;
 
   if (!scope.isQuickstart) {
@@ -93,7 +95,8 @@ export default async function createProject(scope: Scope) {
 
     // merge template files if a template is specified
     const hasTemplate = Boolean(scope.template);
-    if (hasTemplate) {
+    const hasExampleApp = Boolean(scope.useExampleApp);
+    if (hasTemplate || hasExampleApp) {
       try {
         await mergeTemplate(scope, rootPath);
       } catch (error) {
@@ -229,5 +232,7 @@ function runInstall({ rootPath, packageManager }: Scope) {
     installArguments.push(...(installArgumentsMap[packageManager] ?? []));
   }
 
+  console.log(packageManager, installArguments, options);
+  
   return execa(packageManager, installArguments, options);
 }
