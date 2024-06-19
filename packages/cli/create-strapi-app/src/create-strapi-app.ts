@@ -1,12 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import commander from 'commander';
-import {
-  checkInstallPath,
-  checkRequirements,
-  generateNewApp,
-  type NewOptions,
-} from '@strapi/generate-new';
+import { checkInstallPath, generateNewApp, type NewOptions } from '@strapi/generate-new';
 import promptUser from './utils/prompt-user';
 import type { Program } from './types';
 import { handleCloudProject } from './cloud';
@@ -61,8 +56,7 @@ async function generateApp(
   }
 
   if (!options.skipCloud) {
-    checkRequirements();
-    await handleCloudProject(projectName);
+    await handleCloudProject();
   }
 
   return generateNewApp(projectName, options).then(() => {
