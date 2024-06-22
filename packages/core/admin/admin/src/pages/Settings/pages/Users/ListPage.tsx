@@ -96,8 +96,9 @@ const ListPageCE = () => {
     }
   };
 
-  const handleDeleteClick = (id: SanitizedAdminUser['id']) => async () =>
+  const handleDeleteClick = (id: SanitizedAdminUser['id']) => async () => {
     await handleDeleteAll([id]);
+  };
 
   // block rendering until the EE component is fully loaded
   if (!CreateAction) {
